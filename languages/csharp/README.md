@@ -8,7 +8,7 @@ Represents the outcome of an operation—either **success** or **failure**.
 
 - **IsSuccess**: `true` if the operation succeeded.
 - **IsFailure**: `true` if the operation failed.
-- **Error**: The associated `Error` object if failed, or `null` if successful.
+- **Error?**: The associated `Error` object if failed, or `null` if successful.
 
 **Methods:**
 
@@ -19,8 +19,58 @@ Represents the outcome of an operation—either **success** or **failure**.
 **Static Methods:**
 
 - **Success()**: Creates a successful result.
-- **Success(TValue value)**: Creates a successful result of TValue.  **[!] It's just Sugar Syntax for `Result<TValue>`**.
+- **Success(TValue value)**: Creates a successful result for `Result<TValue>`.  
+  _Sugar Syntax for result creation with a Value - type is inferred from the value_.
 - **Failure(Error error)**: Creates a failed result with an associated error.
+
+### Type Inference in C#
+
+C# allows for sugar syntax like `Result.Success(value)` because it can **deduce the type** from the value provided.
+However, it **cannot** infer the type for failures from just the error object.
+
+You must specify the type explicitly, for example:
+
+```csharp
+Result<int>.Failure(error);
+// or
+Result.Failure<int>(error);
+```
+
+#### Workaround for Clean Calls
+
+If you want to avoid repeating the type at every failure, you can use a local helper method:
+
+```csharp
+private Result<MyType> Fail(Error error) => Result<MyType>.Failure(error); // <-- Helper
+
+// Usage:
+if (shouldFail) return Fail(new Error("failed!"));
+return Result.Success(0);
+```
+
+This is a C# language limitation, not a library design issue.
+C# cannot automatically infer the return type from the consuming method's signature—it can only do so when a value is provided.
+
+**This will not compile:**
+
+```csharp
+private Result<int> MyMethod() 
+{
+	//...
+	return Result.Failure(new Error("failed!")); 
+
+	// Compilation error!
+	// Result.Failure is returning a Result, not a Result<int>.
+
+
+	----
+	Corrected by:
+
+	return Result<int>.Failure(new Error("failed!")); 
+	or
+	return Result.Failure<int>(new Error("failed!")); 
+}
+```
 
 ---
 
