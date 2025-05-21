@@ -4,6 +4,31 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.0</Version>
+    <PackageId>OpenResult</PackageId>
+    <Title>OpenResult</Title>
+    <Company>Fernando Jiménez</Company>
+    <Authors>Fernando Jiménez</Authors>
+    <Copyright>Copyright © 2025 Fernando Jiménez</Copyright>
+    <Description>
+      Dead-simple, dependency-free implementation of the Result pattern for .NET and C#.
+
+      ⚠️ Use this NuGet package for trying out or prototyping only. Production projects should not depend on it. Instead, copy or fork the source file into your own codebase for total ownership and no external contracts.    
+
+      Learn more and get guidance at https://github.com/fernando-jimenez-dev/openresult/
+</Description>
+
+    <PackageTags>Result;Minimal;ErrorHandling;Functional;CopyPaste;CSharp;NoDependencies</PackageTags>
+    <PackageProjectUrl>https://github.com/fernando-jimenez-dev/openresult/</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/fernando-jimenez-dev/openresult/</RepositoryUrl>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 </Project>

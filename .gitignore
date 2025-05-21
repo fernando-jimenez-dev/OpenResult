@@ -14,3 +14,7 @@ sonarqubecoverage
 
 TestResults
 **/TestResults
+
+ci-cd
+
+languages/csharp/nuget-artifact
