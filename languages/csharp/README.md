@@ -19,6 +19,7 @@ Represents the outcome of an operation—either **success** or **failure**.
 **Static Methods:**
 
 - **Success()**: Creates a successful result.
+- **Success(TValue value)**: Creates a successful result of TValue.  **[!] It's just Sugar Syntax for `Result<TValue>`**.
 - **Failure(Error error)**: Creates a failed result with an associated error.
 
 ---

@@ -15,6 +15,33 @@ public class ResultTests
     }
 
     [Fact]
+    public void Success_SugarSyntax_Creates_Successful_Result()
+    {
+        var result = Result.Success(0);
+
+        Assert.IsType<Result<int>>(result);
+        Assert.True(result.IsSuccess);
+        Assert.False(result.IsFailure);
+        Assert.Null(result.Error);
+        Assert.True(result.Succeeded());
+        Assert.False(result.Failed());
+    }
+
+    [Fact]
+    public void Success_SugarSyntax_Creates_Successful_Result_WithOutValue()
+    {
+        var result = Result.Success(0);
+
+        Assert.IsType<Result<int>>(result);
+        Assert.True(result.IsSuccess);
+        Assert.False(result.IsFailure);
+        Assert.Null(result.Error);
+        Assert.True(result.Succeeded(out var value));
+        Assert.Equal(0, value);
+        Assert.False(result.Failed());
+    }
+
+    [Fact]
     public void Failure_Creates_Failed_Result_With_Error()
     {
         var error = new Error("Test error");
