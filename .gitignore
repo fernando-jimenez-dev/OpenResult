@@ -18,3 +18,4 @@ TestResults
 ci-cd
 
 languages/csharp/nuget-artifact
+languages/csharp/**/nupkg
