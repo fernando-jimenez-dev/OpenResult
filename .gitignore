@@ -3,3 +3,14 @@
 # CSharp
 **/bin
 **/obj
+
+.sonarqube
+sonarqubecoverage
+**/.sonarqube
+**/sonarqubecoverage
+
+.secrets
+**/.secrets
+
+TestResults
+**/TestResults
